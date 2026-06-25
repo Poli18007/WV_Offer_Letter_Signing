@@ -1,1 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Offer Letter – Haya Shoaib | Weekend Vikings</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
+  :root {
+    --espresso:      #3a2a27;
+    --espresso-deep: #241917;
+    --espresso-light:#5a3f3a;
+    --cream:         #f7f3ea;
+    --cream2:        #efe8dd;
+    --ink:           #34251f;
+    --body:          #6f6760;
+    --muted:         #a89e93;
+    --line:          #e6ded1;
+    --on-dark:       #f5efe6;
+  }
+
+  body {
+    font-family: 'Segoe UI', Calibri, sans-serif;
+    background: var(--cream);
+    color: var(--body);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ── Header ─────────────────────────────────────────── */
+  .site-header {
+    background: var(--espresso-deep);
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+  .hdr-logo {
+    background: var(--espresso-deep);
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: 1;
+  }
+  .hdr-logo img { width: 52px; height: 52px; object-fit: contain; }
+  .hdr-logo-text h1 {
+    font-family: Georgia, serif;
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--on-dark);
+    letter-spacing: 3px;
+  }
+  .hdr-logo-text p {
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 2px;
+  }
+  .hdr-badge {
+    background: var(--espresso);
+    border-left: 3px solid var(--espresso-light);
+    padding: 14px 24px;
+    text-align: right;
+    min-width: 160px;
+  }
+  .hdr-badge span {
+    display: block;
+    font-family: Georgia, serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--cream);
+    letter-spacing: 4px;
+    line-height: 1.5;
+  }
+  .hdr-badge small { font-size: 11px; color: var(--muted); font-style: italic; }
+
+  /* ── Layout ─────────────────────────────────────────── */
+  .page { max-width: 860px; margin: 0 auto; }
+  .doc-body { background: white; padding: 40px 56px; border: 1px solid var(--line); }
+
+  /* ── Document typography ─────────────────────────────── */
+  .doc-date { text-align: right; font-size: 12px; color: var(--muted); font-style: italic; margin-bottom: 24px; }
+  .doc-greeting { font-size: 15px; font-weight: bold; color: var(--ink); margin-bottom: 8px; }
+  .doc-intro { color: var(--body); margin-bottom: 24px; }
+
+  .rule-espresso { border: none; border-bottom: 3px solid var(--espresso); margin: 8px 0 24px; }
+  .rule-light    { border: none; border-bottom: 1px solid var(--line); margin: 18px 0 4px; }
+
+  .sec-heading {
+    font-family: Georgia, serif;
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--espresso);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 20px 0 10px;
+  }
+
+  ul.doc-list { list-style: none; padding: 0; }
+  ul.doc-list li {
+    padding: 4px 0 4px 18px;
+    position: relative;
+    color: var(--body);
+    font-size: 13.5px;
+  }
+  ul.doc-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--espresso);
+    font-weight: bold;
+  }
+  ul.doc-list li b { color: var(--ink); }
+
+  .doc-para { font-size: 13.5px; color: var(--body); margin: 8px 0; }
+  .doc-italic { font-style: italic; }
+
+  /* ── Signing section ─────────────────────────────────── */
+  .signing-wrapper { margin-top: 40px; }
+  .signing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 16px; }
+
+  .sig-card {
+    background: var(--cream2);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .sig-card-header {
+    background: var(--espresso-deep);
+    padding: 10px 16px;
+    font-family: Georgia, serif;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: var(--cream);
+    text-transform: uppercase;
+  }
+  .sig-card-body { padding: 16px; }
+
+  .sig-name-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 14px;
+  }
+  .sig-name-field label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+  .sig-name-field input {
+    border: none;
+    border-bottom: 1.5px solid var(--espresso);
+    background: transparent;
+    padding: 6px 2px;
+    font-size: 14px;
+    color: var(--ink);
+    outline: none;
+    width: 100%;
+  }
+  .sig-name-field input:focus { border-bottom-color: var(--espresso-light); }
+
+  .sig-canvas-wrap { position: relative; }
+  .sig-canvas-label {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  canvas.sig-canvas {
+    width: 100%;
+    height: 110px;
+    border: 1.5px dashed var(--line);
+    border-radius: 4px;
+    cursor: crosshair;
+    background: white;
+    display: block;
+    touch-action: none;
+  }
+  canvas.sig-canvas.signed { border-style: solid; border-color: var(--espresso); }
+
+  .sig-actions { display: flex; gap: 8px; margin-top: 8px; }
+  .btn-clear {
+    font-size: 12px;
+    padding: 5px 12px;
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    color: var(--muted);
+    cursor: pointer;
+  }
+  .btn-clear:hover { border-color: var(--espresso); color: var(--espresso); }
+
+  .sig-date { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  .sig-date span { color: var(--ink); }
+
+  /* ── Download bar ────────────────────────────────────── */
+  .action-bar {
+    background: var(--espresso-deep);
+    padding: 18px 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .action-status { font-size: 13px; color: var(--muted); }
+  .action-status b { color: var(--cream); }
+  .btn-download {
+    background: var(--espresso);
+    border: 1px solid var(--espresso-light);
+    color: var(--cream);
+    font-size: 13px;
+    font-weight: bold;
+    padding: 10px 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: background 0.2s;
+  }
+  .btn-download:hover { background: var(--espresso-light); }
+  .btn-download:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* ── Footer ─────────────────────────────────────────── */
+  .site-footer {
+    background: white;
+    border-top: 1px solid var(--line);
+    padding: 14px 56px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .site-footer a { color: var(--espresso); font-weight: bold; text-decoration: none; }
+
+  /* ── Signed badge ────────────────────────────────────── */
+  .signed-badge {
+    display: none;
+    background: #e8f5e9;
+    border: 1px solid #a5d6a7;
+    border-radius: 4px;
+    color: #2e7d32;
+    font-size: 12px;
+    padding: 5px 12px;
+    margin-top: 8px;
+    align-items: center;
+    gap: 6px;
+  }
+  .signed-badge.show { display: flex; }
+
+  @media (max-width: 640px) {
+    .doc-body { padding: 24px 20px; }
+    .signing-grid { grid-template-columns: 1fr; }
+    .action-bar { padding: 14px 20px; }
+    .site-footer { padding: 14px 20px; }
+    .hdr-badge { display: none; }
+  }
+
+  @media print {
+    .action-bar, .btn-clear, .sig-actions { display: none !important; }
+    .site-footer { display: none; }
+    body { background: white; }
+    .site-header { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="hdr-logo">
+      <div class="hdr-logo-text">
+        <h1>WEEKEND VIKINGS</h1>
+        <p>Explore Pakistan, Differently.</p>
+      </div>
+    </div>
+    <div class="hdr-badge">
+      <span>OFFER<br>LETTER</span>
+      <small>Confidential</small>
+    </div>
+  </header>
+
+  <!-- Document body -->
+  <div class="doc-body">
+
+    <p class="doc-date">Date: 24 June 2026</p>
+    <p class="doc-greeting">Dear Ms. Haya Shoaib,</p>
+    <p class="doc-intro">We are pleased to offer you the position of Business Development Representative (BDR) at Weekend Vikings, effective from 1 July 2026.</p>
+
+    <hr class="rule-espresso">
+
+    <p class="sec-heading">Employment Terms</p>
+    <ul class="doc-list">
+      <li><b>Position:</b> Business Development Representative (BDR)</li>
+      <li><b>Company:</b> Weekend Vikings</li>
+      <li><b>Joining Date:</b> 1 July 2026</li>
+      <li><b>Work Location:</b> On-Site</li>
+      <li><b>Working Hours:</b> Flexible</li>
+      <li><b>Weekly Off:</b> Every Monday</li>
+    </ul>
+
+    <hr class="rule-light">
+    <p class="sec-heading">Compensation &amp; Probation</p>
+    <ul class="doc-list">
+      <li>Your salary during the first month probation period will be PKR 30,000 per month.</li>
+      <li>The probation period will be one (1) month.</li>
+      <li>Upon successful completion of probation, your salary will be revised to PKR 40,000 per month.</li>
+      <li>You will also be eligible for performance-based commissions as per company policy.</li>
+    </ul>
+
+    <hr class="rule-light">
+    <p class="sec-heading">Training</p>
+    <ul class="doc-list">
+      <li>You will undergo a paid training period of five (5) days.</li>
+      <li>The training period will be considered part of your employment and will be compensated accordingly.</li>
+    </ul>
+
+    <hr class="rule-light">
+    <p class="sec-heading">Performance Targets</p>
+    <ul class="doc-list">
+      <li>During the probation period, your initial sales target will be 2 confirmed sales per day.</li>
+      <li>After successful completion of probation and salary revision to PKR 40,000, the target will be revised to 3 confirmed sales per day.</li>
+      <li>Performance will be reviewed regularly and targets may be adjusted based on business requirements.</li>
+    </ul>
+
+    <hr class="rule-light">
+    <p class="sec-heading">Employee Benefits</p>
+    <ul class="doc-list">
+      <li>Attractive performance-based commissions.</li>
+      <li>Career growth opportunities within Weekend Vikings.</li>
+      <li>Dynamic travel-focused work environment.</li>
+      <li>One (1) complimentary Weekend Vikings trip of your choice every year, subject to company scheduling and availability.</li>
+    </ul>
+
+    <hr class="rule-light">
+    <p class="sec-heading">General Responsibilities</p>
+    <p class="doc-para">As a Business Development Representative, you will be responsible for handling inbound leads, converting inquiries into bookings, maintaining customer records, following up with prospects, achieving sales targets, and supporting customers throughout their booking journey.</p>
+
+    <hr class="rule-light">
+    <p class="sec-heading">Acceptance</p>
+    <p class="doc-para">Please confirm your acceptance of this offer by signing below.</p>
+    <p class="doc-para doc-italic" style="margin-top:14px;">We are excited to welcome you to the Weekend Vikings team and look forward to your contribution in helping us create unforgettable travel experiences.</p>
+
+    <p class="doc-para" style="margin-top:24px;">Sincerely,</p>
+    <p class="doc-para" style="margin-top:20px; font-weight:bold; color:var(--ink);">HR Department</p>
+    <p class="doc-para">Weekend Vikings</p>
+    <p class="doc-para" style="color:var(--espresso);">www.weekendvikings.com</p>
+
+    <!-- ── Signing Panels ── -->
+    <div class="signing-wrapper">
+      <hr class="rule-espresso">
+
+      <div class="signing-grid">
+
+        <!-- Company side -->
+        <div class="sig-card">
+          <div class="sig-card-header">Authorised Signatory — Weekend Vikings</div>
+          <div class="sig-card-body">
+            <div class="sig-name-field">
+              <label>Full Name</label>
+              <input type="text" id="co-name" placeholder="Enter name…" autocomplete="off">
+            </div>
+            <div class="sig-name-field">
+              <label>Designation</label>
+              <input type="text" id="co-role" placeholder="e.g. Director / HR Manager" autocomplete="off">
+            </div>
+            <p class="sig-canvas-label">Signature</p>
+            <div class="sig-canvas-wrap">
+              <canvas class="sig-canvas" id="co-canvas" width="600" height="220"></canvas>
+            </div>
+            <div class="sig-actions">
+              <button class="btn-clear" onclick="clearCanvas('co')">Clear</button>
+            </div>
+            <div class="signed-badge" id="co-badge">✓ Signed</div>
+            <p class="sig-date" id="co-date"></p>
+          </div>
+        </div>
+
+        <!-- Candidate side -->
+        <div class="sig-card">
+          <div class="sig-card-header">Candidate — Haya Shoaib</div>
+          <div class="sig-card-body">
+            <div class="sig-name-field">
+              <label>Full Name</label>
+              <input type="text" id="ca-name" value="Haya Shoaib" autocomplete="off">
+            </div>
+            <div class="sig-name-field">
+              <label>Date Signed</label>
+              <input type="date" id="ca-date-input" style="border:none;border-bottom:1.5px solid var(--espresso);background:transparent;padding:6px 2px;font-size:14px;color:var(--ink);outline:none;width:100%;">
+            </div>
+            <p class="sig-canvas-label">Signature</p>
+            <div class="sig-canvas-wrap">
+              <canvas class="sig-canvas" id="ca-canvas" width="600" height="220"></canvas>
+            </div>
+            <div class="sig-actions">
+              <button class="btn-clear" onclick="clearCanvas('ca')">Clear</button>
+            </div>
+            <div class="signed-badge" id="ca-badge">✓ Signed</div>
+            <p class="sig-date" id="ca-date"></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /doc-body -->
+
+  <!-- Action bar -->
+  <div class="action-bar">
+    <p class="action-status" id="status-msg"><b>Pending signatures</b> — both parties must sign before printing.</p>
+    <button class="btn-download" id="btn-print" onclick="doPrint()" disabled>Print / Save PDF</button>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    WhatsApp: 0307 5223265 &nbsp;·&nbsp; hello@weekendvikings.pk &nbsp;·&nbsp;
+    <a href="https://weekendvikings.com" target="_blank">weekendvikings.com</a>
+    &nbsp;·&nbsp; Office #2, RAS Arcade, G-13/4, Islamabad
+  </footer>
+
+</div><!-- /page -->
+
+<script>
+const state = { co: false, ca: false };
+
+function setupCanvas(id) {
+  const canvas = document.getElementById(id + '-canvas');
+  const ctx = canvas.getContext('2d');
+  let drawing = false;
+  let lastX = 0, lastY = 0;
+
+  function scale() {
+    return canvas.width / canvas.getBoundingClientRect().width;
+  }
+  function pos(e) {
+    const r = canvas.getBoundingClientRect();
+    const s = scale();
+    if (e.touches) {
+      return [(e.touches[0].clientX - r.left) * s, (e.touches[0].clientY - r.top) * s];
+    }
+    return [(e.clientX - r.left) * s, (e.clientY - r.top) * s];
+  }
+
+  ctx.strokeStyle = '#241917';
+  ctx.lineWidth = 2.2;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+
+  function start(e) {
+    e.preventDefault();
+    drawing = true;
+    [lastX, lastY] = pos(e);
+  }
+  function draw(e) {
+    if (!drawing) return;
+    e.preventDefault();
+    const [x, y] = pos(e);
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(x, y);
+    ctx.stroke();
+    [lastX, lastY] = [x, y];
+  }
+  function stop(e) {
+    if (!drawing) return;
+    drawing = false;
+    if (!isEmpty(canvas)) markSigned(id);
+  }
+
+  canvas.addEventListener('mousedown', start);
+  canvas.addEventListener('mousemove', draw);
+  canvas.addEventListener('mouseup', stop);
+  canvas.addEventListener('mouseleave', stop);
+  canvas.addEventListener('touchstart', start, { passive: false });
+  canvas.addEventListener('touchmove', draw, { passive: false });
+  canvas.addEventListener('touchend', stop);
+}
+
+function isEmpty(canvas) {
+  const data = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height).data;
+  for (let i = 3; i < data.length; i += 4) {
+    if (data[i] > 0) return false;
+  }
+  return true;
+}
+
+function markSigned(id) {
+  const canvas = document.getElementById(id + '-canvas');
+  canvas.classList.add('signed');
+  const badge = document.getElementById(id + '-badge');
+  badge.classList.add('show');
+  const now = new Date();
+  const ds = now.toLocaleDateString('en-PK', { day:'2-digit', month:'long', year:'numeric' });
+  document.getElementById(id + '-date').innerHTML = 'Signed on <span>' + ds + '</span>';
+  state[id] = true;
+  checkBothSigned();
+}
+
+function checkBothSigned() {
+  const btn = document.getElementById('btn-print');
+  const msg = document.getElementById('status-msg');
+  if (state.co && state.ca) {
+    btn.disabled = false;
+    msg.innerHTML = '<b>Both parties have signed.</b> This offer letter is ready to print or save.';
+  } else if (state.co || state.ca) {
+    const who = state.co ? 'company' : 'candidate';
+    msg.innerHTML = 'Waiting for <b>' + (who === 'company' ? 'candidate' : 'company') + '</b> signature…';
+  }
+}
+
+function clearCanvas(id) {
+  const canvas = document.getElementById(id + '-canvas');
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  canvas.classList.remove('signed');
+  document.getElementById(id + '-badge').classList.remove('show');
+  document.getElementById(id + '-date').innerHTML = '';
+  state[id] = false;
+  document.getElementById('btn-print').disabled = true;
+  document.getElementById('status-msg').innerHTML = '<b>Pending signatures</b> — both parties must sign before printing.';
+}
+
+function doPrint() { window.print(); }
+
+setupCanvas('co');
+setupCanvas('ca');
+
+// Set today's date as default for candidate date picker
+const today = new Date().toISOString().split('T')[0];
+document.getElementById('ca-date-input').value = today;
+</script>
+</body>
+</html>
